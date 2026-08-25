@@ -36,5 +36,34 @@ here we can see that the payload is being sent in the request header unlike in t
 
 ### LAB - 3 
 
+DOM Based XSS
 
+``` user input in search field -> location.search function handles input -> forwards it to document.write function -> this directly writes to the response -> forwarded to browser```
+
+```payload : "><script>alert(5);</script>```
+
+"> because this input will be going into the DOM code directly instead of travelling to the server this should close the existing fields for example :
+
+<input value="YOUR_INPUT">  -- it should first close the existing html line and then this script will be written in between in the user browser.
+
+the above parsing technique is not exclusive to DOM here the input in handled inside the <""> so it is used. even in stored and reflected xss if the input is handled like this then we
+should first try to close the existing symbols.
+
+
+### LAB - 4
+
+DOM Based XSS (innerHTML)
+
+innerHTML ::
+
+Syntax: element.innerHTML = "new content";
+
+Action: The browser takes the string on the right side of the equals sign, reads it as HTML code, deletes all old child elements inside that element, and builds the new elements right
+there.
+
+***user input will be directly used to manipulate the html DOM but the limitation is js engine will not run new scripts inside the innerHTML property.(cannot write new script)***
+
+``` payload :: <img src=x onerror=alert(1)> ```
+
+this is an html payload which can be used for before labs also instead of writing the new javascript.
 
