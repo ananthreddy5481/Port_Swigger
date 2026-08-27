@@ -54,7 +54,7 @@ should first try to close the existing symbols.
 
 DOM Based XSS (innerHTML)
 
-innerHTML ::
+innerHTML ::a property of the DOM that allows you to get or set the HTML content inside a specific web page element
 
 Syntax: element.innerHTML = "new content";
 
@@ -66,4 +66,38 @@ there.
 ``` payload :: <img src=x onerror=alert(1)> ```
 
 this is an html payload which can be used for before labs also instead of writing the new javascript.
+
+
+### LAB - 1 (P)
+
+DOM based xss
+
+<img width="1650" height="688" alt="image" src="https://github.com/user-attachments/assets/5c8ccb7c-5ef1-422c-ba8e-8dae4be169cb" />
+
+the above image confirms that user input is handled by the document.write which directly writes into the js code.
+
+but in the url parameter is missing so find it here and add it manually it.
+
+location.search is taking input from ```storeId``` so that is the parameter that we need to use to make the css exploit.
+
+craft the final url ::
+```
+https://0adc002003ee04b580036756009b00d1.web-security-academy.net/product?productId=2&storeId=%3Cimg%20src=x%20onerror=alert(1)%3E
+```
+
+
+### LAB - 2 (P)
+
+Angular JS - handles features like dynamic content presentation and user interface actions.
+
+AngularJS Steps In (The Front Door Opens)
+
+AngularJS acts like a second compiler inside your browser. It scans down the DOM tree looking for things to compute.
+
+It spots the {{ and }} markers. To AngularJS, these markers mean: "Stop treating this as text. Treat everything inside here as code and execute it immediately."
+
+```
+payload :: {{constructor.constructor('alert(1)')()}}
+```
+
 
