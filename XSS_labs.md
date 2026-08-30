@@ -101,3 +101,24 @@ payload :: {{constructor.constructor('alert(1)')()}}
 ```
 
 
+### LAB - 3 (P)
+
+Reflected DOM XSS - in normal reflected case the server directly reflects the vulnerable input into the response but here the client side xss first receives the server response and writes in the response.
+
+``` sink :: eval('var searchResultsObj = ' + this.responseText);```
+
+```
+flow ::
+
+our input 
+   |
+server  
+   |
+server reflects directly in its response 
+   |
+client side js should take that response as plain text but ```eval``` reads that as a part of the code.
+   |
+this client js manipulates based on the user input causing the alert to trigger.
+```
+
+``` payload :: \" - alert(1)}//```  - 
