@@ -125,7 +125,7 @@ The URL loaded inside the iframe contains a maliciously crafted parameter that e
 
 xss vulnerability is present in the feedback form, in the ```name``` field.parameter value of the name field is ```name``` itself.
 
-xss due to using ```innerHTML```.
+xss due to using ```innerHTML```.(a property of the DOM that allows you to get or set the HTML content inside a specific web page element)
 
 ```xss payload - <img src=x onerror=print()>```
 
