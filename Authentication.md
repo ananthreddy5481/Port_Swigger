@@ -19,3 +19,22 @@ in some applications, status code 200 is returned for correct username and wrong
 instead of failure message, the application will return 200. but for both username and password wrong it will return 401. this difference
 is useful to find the correct username using bruteforcing.
 
+## Lab 1
+
+**Username enumeration via different responses**
+
+<img width="1151" height="610" alt="Screenshot 2026-10-24 at 11 35 34" src="https://github.com/user-attachments/assets/acee7e77-9159-4737-8241-300ab3044893" />
+
+for other usernames it was showing incorrect username and for **```ae```** it gave response length different with response "incorrect
+password".
+
+password brute forcing ::
+
+<img width="1181" height="422" alt="Screenshot 2026-10-24 at 11 44 15" src="https://github.com/user-attachments/assets/2bdf98fc-05ca-4433-ac49-d5e87e38aae5" />
+
+status code 302 :: redirected to another location.
+
+correct password gives 302 cause as soon as entering correct creds you will be redirected to dashboard(kind off) page.here it is redirecting to /myaccount with id=ae.
+
+
+
