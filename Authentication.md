@@ -38,3 +38,18 @@ correct password gives 302 cause as soon as entering correct creds you will be r
 
 
 
+## Lab 2
+
+**Username enumeration via subtly responses**
+
+<img width="1264" height="752" alt="Screenshot 2026-10-24 at 12 19 59" src="https://github.com/user-attachments/assets/7866db52-09a5-48e4-8384-39c0a4d35594" />
+
+in intruder settings,
+
+<img width="751" height="655" alt="Screenshot 2026-10-24 at 12 23 40" src="https://github.com/user-attachments/assets/d3000cde-248e-4e37-a237-f2c8ce1b65b8" />
+
+here we added the response part that needs to be checked for finding difference in the username.
+
+for the username **```autodiscover```** the response does not contain fullstop. in other response it is "invalid username or password.", but for this user it is "invalid username or password" this difference in response is enough. 
+
+<img width="1470" height="879" alt="Screenshot 2026-10-24 at 12 21 13" src="https://github.com/user-attachments/assets/559d0b52-b871-4ef0-860a-bbd3bde182da" />
